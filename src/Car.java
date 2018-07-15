@@ -1,14 +1,21 @@
-public class Car {
+public class Car extends Vehicle{
 
-    private String registrationNumber;
-    private String color;
+    protected String size;
+    private int numberOfSeats;
+    private int numberOfWheels;
 
-    public String getRegistrationNumber() {
-        return registrationNumber;
+    public Car(String registrationNumber, String color){
+        this.registrationNumber = registrationNumber;
+        this.color = color;
+        this.size = "Medium";
     }
 
-    public void setRegistrationNumber(String registrationNumber) {
-        this.registrationNumber = registrationNumber;
+    public int getParkingSlot() {
+        return parkingSlot;
+    }
+
+    public void setParkingSlot(int parkingSlot) {
+        this.parkingSlot = parkingSlot;
     }
 
     public String getColor() {

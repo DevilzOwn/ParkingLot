@@ -1,7 +1,10 @@
 public class ParkingLot {
-//    final JSONParser parser  = new JSONParser(sourceFor("<json>", str), new Context.ThrowErrorManager());
+    private final ParkingSlotInventory inventory = new ParkingSlotInventory(10);
 
     public static void main(String[] args){
-        System.out.println("Initiating the parking Lot");
+        ParkingLot parkingLot = new ParkingLot();
+        Car car = new Car("ka08msndf8723","blue");
+        System.out.println(parkingLot.inventory.park(car));
+        System.out.println(parkingLot.inventory.remove(1));
     }
 }
