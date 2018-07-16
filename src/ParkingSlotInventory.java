@@ -1,19 +1,24 @@
 public class ParkingSlotInventory {
 //    private Map<Integer,Car> inventory = new HashMap<Integer ,Car>();
 
+
+    private Slot parkingSlotList;
     private Vehicle[] parkingSlots;
+
+    public Slot getParkingSlotList() {
+        return parkingSlotList;
+    }
+
+    public void setParkingSlotList(Slot parkingSlotList) {
+        this.parkingSlotList = parkingSlotList;
+    }
 
     public ParkingSlotInventory(int n){
         parkingSlots = new Vehicle[n];
     }
-
-//    public Iterator getCarsIterator(){
-//        return inventory.values().iterator();
-//    }
-//
-//    public Iterator getSlotsIterator(){
-//        return inventory.keySet().iterator();
-//    }
+    public ParkingSlotInventory(Slot list){
+        this.parkingSlotList = list;
+    }
 
     public int park(Vehicle vehicle){
         int i;
@@ -32,5 +37,9 @@ public class ParkingSlotInventory {
 //        Vehicle.setParkingSlot(0);
         parkingSlots[parkingSlot] = null;
         return vehicle;
+    }
+
+    public boolean add(Slot slot){
+        return parkingSlotList.addChild(slot);
     }
 }
