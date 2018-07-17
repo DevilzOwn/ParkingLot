@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 public class ParkingLot {
     ParkingService service;
+    static boolean inventoryNotNull = false;
 
     public static boolean isBlank(final CharSequence cs) {
         int strLen;
@@ -38,82 +39,107 @@ public class ParkingLot {
                         Integer.valueOf(lineCommand[2]));
                 message = "Created a parking lot with "+ Integer.valueOf(lineCommand[1]) +
                         Integer.valueOf(lineCommand[2])+" slots";
+                inventoryNotNull = true;
             }
             else if(!isBlank(lineCommand[1])){
                 this.service = new ParkingService(Integer.valueOf(lineCommand[1]));
                 message = "Created a parking lot with "+ Integer.valueOf(lineCommand[1]) + " slots";
+                inventoryNotNull = true;
             }
 
             break;
         case "park":
-            Car car;
-            if(lineCommand.length>3 && !isBlank(lineCommand[1]) && !isBlank(lineCommand[2]) && !isBlank(lineCommand[3])){
-                car = new Car(lineCommand[1], lineCommand[2], Boolean.getBoolean(lineCommand[3]));
-            }
-            else if(!isBlank(lineCommand[1]) && !isBlank(lineCommand[2])){
-                car = new Car(lineCommand[1], lineCommand[2]);
-            }
-            else break;
+            if(inventoryNotNull) {
+                Car car;
+                if (lineCommand.length > 3 && !isBlank(lineCommand[1]) && !isBlank(lineCommand[2]) && !isBlank(
+                        lineCommand[3])) {
+                    car = new Car(lineCommand[1], lineCommand[2], Boolean.getBoolean(lineCommand[3]));
+                } else if (!isBlank(lineCommand[1]) && !isBlank(lineCommand[2])) {
+                    car = new Car(lineCommand[1], lineCommand[2]);
+                } else
+                    break;
 
-            result = this.service.park(car);
-            if(result != -1){
-                message = "Allocated slot number: " + result;
+                result = this.service.park(car);
+                if (result != -1) {
+                    message = "Allocated slot number: " + result;
+                } else {
+                    message = "Sorry, parking lot is full";
+                }
             }
             else{
-                message = "Sorry, parking lot is full";
+                message = "Please create the parking lot first.";
             }
             break;
         case "leave":
-            if(!isBlank(lineCommand[1])){
-                result = this.service.remove(Integer.valueOf(lineCommand[1]));
-                if(result!=-1){
-                    message = "Slot number " + result + " is free";
-                }
-                else{
-                    message = "Slot number " + result + "is not available or unoccupied.";
+            if(inventoryNotNull) {
+                if (!isBlank(lineCommand[1])) {
+                    result = this.service.remove(Integer.valueOf(lineCommand[1]));
+                    if (result != -1) {
+                        message = "Slot number " + result + " is free";
+                    } else {
+                        message = "Slot number " + result + "is not available or unoccupied.";
+                    }
+                } else {
+                    message = "Slot number not available.";
                 }
             }
             else{
-                message = "Slot number not available.";
+                message = "Please create the parking lot first.";
             }
             break;
         case "registration_numbers_for_cars_with_colour":
-            if(!isBlank(lineCommand[1])) {
-                List<Vehicle> list = service.searchByColor(lineCommand[1]);
-                message = list.stream()
-                        .map(vehicle-> vehicle.getRegistrationNumber())
-                        .collect(Collectors.joining(", "));
+            if(inventoryNotNull) {
+                if (!isBlank(lineCommand[1])) {
+                    List<Vehicle> list = service.searchByColor(lineCommand[1]);
+                    message = list.stream()
+                            .map(vehicle -> vehicle.getRegistrationNumber())
+                            .collect(Collectors.joining(", "));
+                } else {
+                    message = "No Colour was specified.";
+                }
             }
             else{
-                message = "No Colour was specified.";
+                message = "Please create the parking lot first.";
             }
             break;
         case "status":
-            service.printAll();
-            break;
-        case "slot_numbers_for_cars_with_colour":
-            if(!isBlank(lineCommand[1])) {
-                List<Vehicle> list = service.searchByColor(lineCommand[1]);
-                message = list.stream()
-                        .map(vehicle-> Integer.toString(vehicle.getParkingSlot()))
-                        .collect(Collectors.joining(", "));
+            if(inventoryNotNull) {
+                service.printAll();
             }
             else{
-                message = "No Colour was specified.";
+                message = "Please create the parking lot first.";
+            }
+            break;
+        case "slot_numbers_for_cars_with_colour":
+            if(inventoryNotNull) {
+                if (!isBlank(lineCommand[1])) {
+                    List<Vehicle> list = service.searchByColor(lineCommand[1]);
+                    message = list.stream()
+                            .map(vehicle -> Integer.toString(vehicle.getParkingSlot()))
+                            .collect(Collectors.joining(", "));
+                } else {
+                    message = "No Colour was specified.";
+                }
+            }
+            else{
+                message = "Please create the parking lot first.";
             }
             break;
         case "slot_number_for_registration_number":
-            if(!isBlank(lineCommand[1])) {
-                Vehicle vehicle = service.searchByRegistrationNumber(lineCommand[1]);
-                if(vehicle != null){
-                    message = Integer.toString(vehicle.getParkingSlot());
-                }
-                else{
-                    message = "Not found";
+            if(inventoryNotNull) {
+                if (!isBlank(lineCommand[1])) {
+                    Vehicle vehicle = service.searchByRegistrationNumber(lineCommand[1]);
+                    if (vehicle != null) {
+                        message = Integer.toString(vehicle.getParkingSlot());
+                    } else {
+                        message = "Not found";
+                    }
+                } else {
+                    message = "No Registration Number was specified.";
                 }
             }
             else{
-                message = "No Registration Number was specified.";
+                message = "Please create the parking lot first.";
             }
             break;
         case "exit":
