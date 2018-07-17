@@ -1,13 +1,11 @@
-package main;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
-import main.Vehicle.Car;
-import main.Vehicle.Vehicle;
+import Vehicle.Car;
+import Vehicle.Vehicle;
 
 public class ParkingLot {
     ParkingService service;
@@ -127,7 +125,7 @@ public class ParkingLot {
     public static void main(String[] args){
         ParkingLot parkingLot = new ParkingLot();
 
-        String fileName = "resources/file_input.txt";
+        String fileName = "../resources/file_input.txt";
         String line = null;
 
         try {

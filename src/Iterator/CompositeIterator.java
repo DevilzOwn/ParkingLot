@@ -1,6 +1,6 @@
-package main.Iterator;
+package Iterator;
 
-import main.Parking.Slot;
+import Parking.Slot;
 import java.util.Iterator;
 import java.util.Stack;
 

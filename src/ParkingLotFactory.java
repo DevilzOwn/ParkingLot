@@ -1,9 +1,7 @@
-package main;
-
-import main.Parking.EmployeeParkingSlot;
-import main.Parking.ParkingListType;
-import main.Parking.ParkingSlotList;
-import main.Parking.VisitorParkingSlot;
+import Parking.EmployeeParkingSlot;
+import Parking.ParkingListType;
+import Parking.ParkingSlotList;
+import Parking.VisitorParkingSlot;
 
 public class ParkingLotFactory {
 

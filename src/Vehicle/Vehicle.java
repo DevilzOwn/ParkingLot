@@ -1,4 +1,4 @@
-package main.Vehicle;
+package Vehicle;
 
 public abstract class Vehicle {
     protected String registrationNumber;

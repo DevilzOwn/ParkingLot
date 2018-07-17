@@ -1,6 +1,4 @@
-package main;
-
-import main.Parking.Slot;
+import Parking.Slot;
 import java.util.Iterator;
 
 public class ParkingSlotInventory {

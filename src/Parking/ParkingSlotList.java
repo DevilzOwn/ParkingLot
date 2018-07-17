@@ -1,6 +1,6 @@
-package main.Parking;
+package Parking;
 
-import main.Iterator.CompositeIterator;
+import Iterator.CompositeIterator;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

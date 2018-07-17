@@ -1,7 +1,7 @@
-package main.Parking;
+package Parking;
 
 import java.util.Iterator;
-import main.Iterator.NullIterator;
+import Iterator.NullIterator;
 
 public class VisitorParkingSlot extends Slot {
     public VisitorParkingSlot(SizeEnum size) {

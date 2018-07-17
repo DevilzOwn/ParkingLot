@@ -1,11 +1,9 @@
-package main;
-
-import main.Parking.EmployeeParkingSlot;
-import main.Parking.ParkingListType;
-import main.Parking.ParkingSlotList;
-import main.Parking.Slot;
-import main.Parking.VisitorParkingSlot;
-import main.Vehicle.Vehicle;
+import Parking.EmployeeParkingSlot;
+import Parking.ParkingListType;
+import Parking.ParkingSlotList;
+import Parking.Slot;
+import Parking.VisitorParkingSlot;
+import Vehicle.Vehicle;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

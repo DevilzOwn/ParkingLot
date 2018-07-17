@@ -1,4 +1,4 @@
-package main.Parking;
+package Parking;
 
 public enum SizeEnum {
     SMALL, MEDIUM, LARGE, HANDICAPPED;
