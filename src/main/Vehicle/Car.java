@@ -1,6 +1,6 @@
-package Vehicle;
+package main.Vehicle;
 
-import Parking.SizeEnum;
+import main.Parking.SizeEnum;
 
 public class Car extends Vehicle {
 

@@ -1,7 +1,7 @@
-package Parking;
+package main.Parking;
 
 import java.util.Iterator;
-import Vehicle.Vehicle;
+import main.Vehicle.Vehicle;
 
 public abstract class Slot {
     protected int parkingSlot;

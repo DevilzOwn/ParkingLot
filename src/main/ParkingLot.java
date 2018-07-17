@@ -1,11 +1,13 @@
-import Vehicle.Car;
-import Vehicle.Vehicle;
+package main;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
+import main.Vehicle.Car;
+import main.Vehicle.Vehicle;
 
 public class ParkingLot {
     ParkingService service;
@@ -86,6 +88,9 @@ public class ParkingLot {
                 message = "No Colour was specified.";
             }
             break;
+        case "status":
+            service.printAll();
+            break;
         case "slot_numbers_for_cars_with_colour":
             if(!isBlank(lineCommand[1])) {
                 List<Vehicle> list = service.searchByColor(lineCommand[1]);
@@ -115,7 +120,8 @@ public class ParkingLot {
             message = "Please provide a valid input.";
             break;
         }
-        System.out.println(message);
+        if(!isBlank(message))
+            System.out.println(message);
     }
 
     public static void main(String[] args){

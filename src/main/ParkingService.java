@@ -1,9 +1,11 @@
-import Parking.EmployeeParkingSlot;
-import Parking.ParkingListType;
-import Parking.ParkingSlotList;
-import Parking.Slot;
-import Parking.VisitorParkingSlot;
-import Vehicle.Vehicle;
+package main;
+
+import main.Parking.EmployeeParkingSlot;
+import main.Parking.ParkingListType;
+import main.Parking.ParkingSlotList;
+import main.Parking.Slot;
+import main.Parking.VisitorParkingSlot;
+import main.Vehicle.Vehicle;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -91,11 +93,12 @@ public class ParkingService {
 
     public void printAll(){
         Iterator<Slot> iterator = inventory.createIterator();
+        System.out.println("Slot No.\tRegistration No\t\tColour");
         while(iterator.hasNext()){
             Slot slot = iterator.next();
             if(slot.getSize()!= null){
-                System.out.println(slot.getParkingSlot() + ":" +
-                        slot.getVehicle().getRegistrationNumber() + ":" +
+                System.out.println(slot.getParkingSlot() + "\t\t\t" +
+                        slot.getVehicle().getRegistrationNumber() + "\t\t" +
                         slot.getVehicle().getColor());
             }
         }
