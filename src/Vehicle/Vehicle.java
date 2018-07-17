@@ -6,6 +6,14 @@ public abstract class Vehicle {
     protected int parkingSlot;
     protected boolean isEmployeeVehicle;
 
+    public boolean isEmployeeVehicle() {
+        return isEmployeeVehicle;
+    }
+
+    public void setEmployeeVehicle(boolean employeeVehicle) {
+        isEmployeeVehicle = employeeVehicle;
+    }
+
     public String getRegistrationNumber() {
         return registrationNumber;
     }

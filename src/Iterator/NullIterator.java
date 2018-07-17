@@ -10,7 +10,8 @@ public class NullIterator implements Iterator {
      *
      * @return {@code true} if the iteration has more elements
      */
-    @Override public boolean hasNext() {
+    @Override
+    public boolean hasNext() {
         return false;
     }
 
@@ -20,7 +21,8 @@ public class NullIterator implements Iterator {
      * @return the next element in the iteration
      * @throws NoSuchElementException if the iteration has no more elements
      */
-    @Override public Object next() {
+    @Override
+    public Object next() {
         return null;
     }
 }

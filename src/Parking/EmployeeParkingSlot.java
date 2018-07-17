@@ -1,6 +1,7 @@
 package Parking;
 
 import java.util.Iterator;
+import Iterator.NullIterator;
 
 public class EmployeeParkingSlot extends Slot{
     private String employeeId;
@@ -20,11 +21,11 @@ public class EmployeeParkingSlot extends Slot{
     }
 
     @Override
-    protected float findHourlyRate(SizeEnum size) {
+    public float findHourlyRate(SizeEnum size) {
         return 0;
     }
 
-    @Override protected Iterator createIterator() {
-        return null;
+    @Override public Iterator createIterator() {
+        return new NullIterator();
     }
 }

@@ -2,6 +2,7 @@ import Parking.EmployeeParkingSlot;
 import Parking.Slot;
 import Parking.VisitorParkingSlot;
 import java.util.Iterator;
+import Vehicle.Vehicle;
 
 public class ParkingSlotInventory {
 
@@ -36,7 +37,7 @@ public class ParkingSlotInventory {
 //            }
 //        }
 //        return -1;
-        if(vehicle.isEmployeeVehicle){
+        if(vehicle.isEmployeeVehicle()){
             slot = new EmployeeParkingSlot("8723");
             slot.setVehicle(vehicle);
             Slot employeeList=null;

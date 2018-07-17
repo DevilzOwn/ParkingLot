@@ -1,3 +1,7 @@
+import Parking.EmployeeParkingSlot;
+import Parking.ParkingSlotList;
+import Parking.VisitorParkingSlot;
+
 public class ParkingLotFactory {
 
     int employeeSlots;

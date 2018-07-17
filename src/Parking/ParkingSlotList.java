@@ -5,8 +5,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import Iterator.CompositeIterator;
 
-public class ParkingSlotList extends  Slot {
+public class ParkingSlotList<T> extends  Slot {
     List<Slot> slots;
     Queue<Integer> freeSlots;
 
@@ -43,11 +44,11 @@ public class ParkingSlotList extends  Slot {
         return false;
     }
 
-    @Override protected float findHourlyRate(SizeEnum size) {
+    @Override public float findHourlyRate(SizeEnum size) {
         throw new UnsupportedOperationException();
     }
 
-    @Override protected Iterator createIterator() {
-        return slots.iterator();
+    @Override public Iterator createIterator() {
+        return new CompositeIterator(slots.iterator());
     }
 }

@@ -1,3 +1,5 @@
+import Vehicle.Car;
+
 public class ParkingLot {
     private final ParkingSlotInventory inventory = new ParkingSlotInventory(10);
 
