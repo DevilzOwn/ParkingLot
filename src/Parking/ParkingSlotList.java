@@ -31,6 +31,7 @@ public class ParkingSlotList<T> extends  Slot {
         this.size = null;
         this.parkingSlot = -1;
         this.type = type;
+        this.setVehicle(null);
     }
 
     public ParkingSlotList(ParkingListType type){
@@ -39,6 +40,7 @@ public class ParkingSlotList<T> extends  Slot {
         this.size = null;
         this.parkingSlot = -1;
         this.type = type;
+        this.setVehicle(null);
     }
 
     @Override
