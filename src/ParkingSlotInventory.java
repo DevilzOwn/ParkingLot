@@ -1,8 +1,10 @@
 import Parking.EmployeeParkingSlot;
+import Parking.ParkingListType;
+import Parking.ParkingSlotList;
 import Parking.Slot;
 import Parking.VisitorParkingSlot;
-import java.util.Iterator;
 import Vehicle.Vehicle;
+import java.util.Iterator;
 
 public class ParkingSlotInventory {
 
@@ -27,7 +29,7 @@ public class ParkingSlotInventory {
     public int park(Vehicle vehicle){
         int slotId=-1, i=0;
         Slot slot = null;
-        Iterator iterator = parkingSlotList.createIterator();
+
 //        int i;
 //        for(i=1;i<parkingSlots.length;i++){
 //            if(parkingSlots[i] == null){
@@ -38,54 +40,94 @@ public class ParkingSlotInventory {
 //        }
 //        return -1;
         if(vehicle.isEmployeeVehicle()){
+            Iterator<Slot> iterator = parkingSlotList.createIterator();
             slot = new EmployeeParkingSlot("8723");
             slot.setVehicle(vehicle);
             Slot employeeList=null;
             while(iterator.hasNext()){
-                employeeList = (Slot)iterator.next();
-                i++;
+                employeeList = iterator.next();
+                if(employeeList instanceof ParkingSlotList &&
+                        ((ParkingSlotList) employeeList).getType() == ParkingListType.EMPLOYEE){
+                    if(((ParkingSlotList) employeeList).addChild(slot)){
+                        slotId = slot.getParkingSlot();
+                        break;
+                    }
+                    else {
+                        slotId =-1;
+                        break;
+                    }
+                }
             }
-            if(i==2 && employeeList!=null)
-                employeeList.addChild(slot);
-            else
-                return -1;
-
-            slotId=slot.getParkingSlot();
+            slotId=-1;
         }
         else{
+            Iterator<Slot> iterator = parkingSlotList.createIterator();
             slot = new VisitorParkingSlot();
             slot.setVehicle(vehicle);
-            if(iterator.hasNext()){
-                Slot visitorList = (Slot)iterator.next();
-                visitorList.addChild(slot);
+            Slot visitorList = null;
+            while(iterator.hasNext()){
+                visitorList = iterator.next();
+                if(visitorList instanceof ParkingSlotList && ((ParkingSlotList) visitorList).getType() == ParkingListType.VISITOR){
+                    if(((ParkingSlotList)visitorList).addChild(slot)){
+                        slotId = slot.getParkingSlot();
+                        break;
+                    }
+                    else {
+                        slotId=-1;
+                        break;
+                    }
+                }
             }
-            slotId=slot.getParkingSlot();
         }
         return slotId;
     }
 
-    public Vehicle remove(int parkingSlot){
+    public boolean remove(int parkingSlot){
 //        Vehicle vehicle = parkingSlots[parkingSlot];
 ////        Vehicle.setParkingSlot(0);
 //        parkingSlots[parkingSlot] = null;
 //        return vehicle;
-        Iterator iterator = parkingSlotList.createIterator();
+        Iterator<Slot> iterator = parkingSlotList.createIterator();
+        ParkingSlotList list = null;
 
-        while(iterator.hasNext()){
-            Slot parkingList= (Slot)iterator.next();
-            Iterator listIterator = parkingList.createIterator();
-            while(listIterator.hasNext()){
-                Slot slot = (Slot)listIterator.next();
-                if(slot.getParkingSlot() == parkingSlot){
-                    parkingList.removeChild(slot);
+        while(iterator.hasNext()) {
+            Slot parkingElement = iterator.next();
+            if (parkingElement instanceof ParkingSlotList) {
+                list = (ParkingSlotList) parkingElement;
+                Iterator<Slot> listIterator = list.createIterator();
+                while (listIterator.hasNext()) {
+                    Slot slot = listIterator.next();
+                    if (slot.getParkingSlot() == parkingSlot) {
+                        return list.removeChild(slot);
+                    }
                 }
             }
         }
-
-
+//            if(parkingElement instanceof VisitorParkingSlot || parkingElement instanceof EmployeeParkingSlot){
+//                if(parkingElement.getParkingSlot() == parkingSlot){
+//
+//                }
+//            }
+//            Iterator listIterator = parkingList.createIterator();
+//            while(listIterator.hasNext()){
+//                Slot slot = (Slot)listIterator.next();
+//                if(slot.getParkingSlot() == parkingSlot){
+//                    parkingList.removeChild(slot);
+//                }
+//            }
+//        }
+    return false;
     }
 
-    public boolean add(Slot slot){
-        return parkingSlotList.addChild(slot);
+    public void printAll(){
+        Iterator<Slot> iterator = parkingSlotList.createIterator();
+        while(iterator.hasNext()){
+            Slot slot = iterator.next();
+            if(slot.getSize()!= null){
+                System.out.println(slot.getParkingSlot() + ":" +
+                        slot.getVehicle().getRegistrationNumber() + ":" +
+                        slot.getVehicle().getColor());
+            }
+        }
     }
 }

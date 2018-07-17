@@ -11,8 +11,8 @@ public class VisitorParkingSlot extends Slot {
     }
 
     public VisitorParkingSlot() {
-        this.rate = findHourlyRate(size);
         this.size = SizeEnum.MEDIUM;
+        this.rate = findHourlyRate(size);
         this.startTime = System.currentTimeMillis();
     }
 
@@ -28,6 +28,8 @@ public class VisitorParkingSlot extends Slot {
         case MEDIUM: rate = 20;
             break;
         case HANDICAPPED: rate = 5;
+            break;
+        default: rate = 0;
             break;
         }
         return rate;

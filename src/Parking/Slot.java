@@ -11,6 +11,14 @@ public abstract class Slot {
     protected long startTime;
     protected Vehicle vehicle;
 
+    public SizeEnum getSize() {
+        return size;
+    }
+
+    public void setSize(SizeEnum size) {
+        this.size = size;
+    }
+
     public int getParkingSlot() {
         return parkingSlot;
     }
