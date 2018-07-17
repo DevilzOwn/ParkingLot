@@ -1,7 +1,9 @@
+package Parking;
+
 import java.util.Iterator;
+import Vehicle.Vehicle;
 
 public abstract class Slot {
-
     protected int parkingSlot;
     protected SizeEnum size;
     protected float rate;
@@ -49,6 +51,6 @@ public abstract class Slot {
         throw new UnsupportedOperationException();
     }
 
-    protected abstract float findHourlyRate(SizeEnum size);
-    protected abstract Iterator createIterator();
+    public abstract float findHourlyRate(SizeEnum size);
+    public abstract Iterator createIterator();
 }

@@ -1,12 +1,21 @@
+package Parking;
+
 import java.util.Iterator;
 
 public class EmployeeParkingSlot extends Slot{
     private String employeeId;
 
-    public EmployeeParkingSlot(String employeeId, float rate, SizeEnum size) {
+    public EmployeeParkingSlot(String employeeId, SizeEnum size) {
         this.employeeId = employeeId;
         this.rate = findHourlyRate(size);
         this.size = size;
+        this.startTime = System.currentTimeMillis();
+    }
+
+    public EmployeeParkingSlot(String employeeId){
+        this.employeeId = employeeId;
+        this.rate = findHourlyRate(size);
+        this.size = SizeEnum.MEDIUM;
         this.startTime = System.currentTimeMillis();
     }
 
@@ -18,5 +27,4 @@ public class EmployeeParkingSlot extends Slot{
     @Override protected Iterator createIterator() {
         return null;
     }
-
 }

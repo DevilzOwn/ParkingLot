@@ -1,10 +1,17 @@
+package Parking;
+
 import java.util.Iterator;
 
 public class VisitorParkingSlot extends Slot {
-
-    public VisitorParkingSlot(String employeeId, float rate, SizeEnum size) {
+    public VisitorParkingSlot(SizeEnum size) {
         this.rate = findHourlyRate(size);
         this.size = size;
+        this.startTime = System.currentTimeMillis();
+    }
+
+    public VisitorParkingSlot() {
+        this.rate = findHourlyRate(size);
+        this.size = SizeEnum.MEDIUM;
         this.startTime = System.currentTimeMillis();
     }
 
@@ -13,13 +20,13 @@ public class VisitorParkingSlot extends Slot {
         float rate=0;
 
         switch (size){
-            case SMALL: rate = 5;
+        case SMALL: rate = 5;
             break;
-            case LARGE: rate = 15;
+        case LARGE: rate = 15;
             break;
-            case MEDIUM: rate = 20;
+        case MEDIUM: rate = 20;
             break;
-            case HANDICAPPED: rate = 5;
+        case HANDICAPPED: rate = 5;
             break;
         }
         return rate;
@@ -28,6 +35,4 @@ public class VisitorParkingSlot extends Slot {
     @Override protected Iterator createIterator() {
         return null;
     }
-
-
 }
