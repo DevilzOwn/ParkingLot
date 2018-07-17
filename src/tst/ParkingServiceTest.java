@@ -31,7 +31,7 @@ public class ParkingServiceTest {
 
     @AfterClass
     public static void  afterClass() {
-        System.out.println("in after class");
+        System.out.println("Completed running unit tests.");
     }
 
 

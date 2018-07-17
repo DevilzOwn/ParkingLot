@@ -1,12 +1,13 @@
 import ParkingService.ParkingService;
+import Vehicle.Car;
+import Vehicle.Vehicle;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
-import Vehicle.Car;
-import Vehicle.Vehicle;
 
 public class ParkingLot {
     ParkingService service;
@@ -115,6 +116,9 @@ public class ParkingLot {
                 message = "No Registration Number was specified.";
             }
             break;
+        case "exit":
+            System.exit(0);
+            break;
         default:
             message = "Please provide a valid input.";
             break;
@@ -123,10 +127,7 @@ public class ParkingLot {
             System.out.println(message);
     }
 
-    public static void main(String[] args){
-        ParkingLot parkingLot = new ParkingLot();
-
-        String fileName = "../resources/file_input.txt";
+    private void readFromFile(String fileName){
         String line = null;
 
         try {
@@ -137,7 +138,7 @@ public class ParkingLot {
                     new BufferedReader(fileReader);
 
             while((line = bufferedReader.readLine()) != null) {
-                parkingLot.processLine(line);
+                processLine(line);
             }
 
             bufferedReader.close();
@@ -150,5 +151,21 @@ public class ParkingLot {
         catch(IOException ex){
             System.out.println("Unable read Lines from buffered Reader.");
         }
+    }
+    public static void main(String[] args){
+        ParkingLot parkingLot = new ParkingLot();
+        if(args.length>0){
+            String fileName = args[0];
+            parkingLot.readFromFile(fileName);
+        }
+        else{
+            Scanner scanner = new Scanner(System.in);
+            while(true) {
+                String command = scanner.nextLine();
+                parkingLot.processLine(command);
+            }
+        }
+
+
     }
 }
