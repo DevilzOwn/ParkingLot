@@ -47,6 +47,7 @@ public class ParkingSlotList<T> extends  Slot {
     public boolean addChild(Slot slot){
         if(freeSlots != null && !freeSlots.isEmpty()){
             slot.setParkingSlot(freeSlots.poll());
+            slot.getVehicle().setParkingSlot(slot.getParkingSlot());
             slots.add(slot);
             return true;
         }

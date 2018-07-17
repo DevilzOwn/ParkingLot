@@ -68,7 +68,7 @@ public class ParkingService {
         return slotId;
     }
 
-    public boolean remove(int parkingSlot){
+    public int remove(int parkingSlot){
         Iterator<Slot> iterator = inventory.createIterator();
         ParkingSlotList list = null;
 
@@ -80,12 +80,13 @@ public class ParkingService {
                 while (listIterator.hasNext()) {
                     Slot slot = listIterator.next();
                     if (slot.getParkingSlot() == parkingSlot) {
-                        return list.removeChild(slot);
+                        list.removeChild(slot);
+                        return parkingSlot;
                     }
                 }
             }
         }
-        return false;
+        return -1;
     }
 
     public void printAll(){
