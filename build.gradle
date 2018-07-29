@@ -2,14 +2,28 @@ plugins {
     id 'java'
 }
 
+apply plugin: 'application'
+
+run{
+    standardInput = System.in
+}
+
 group 'com.parking.parkinglot'
+mainClassName='ParkingLot'
 version '1.0-SNAPSHOT'
+applicationDefaultJvmArgs = ["-Dgreeting.language=en"]
+
 
 sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
 }
+
+//task execute(type:JavaExec) {
+//    main = mainClass
+//    classpath = sourceSets.main.runtimeClasspath
+//}
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
